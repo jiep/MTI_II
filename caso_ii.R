@@ -35,7 +35,7 @@ for(i in 1:n) {
 categories_percentage <- categories_count/n*100
 
 # Contamos la frecuencia de cada valor
-freuencies <- table(x)
+frequencies <- table(x)
 
 # Calculamos la probabilidad de un cliente más de 7 intentos para conectarse 
 # a la web P(#intentos > 7) = 1 - P(#intentos <= 6) = 1 - [ P(#intentos = 1) 
@@ -93,7 +93,7 @@ samples_percentages <- c(samples_BAJO, samples_MEDIO, samples_ALTO)/n_samples*10
 # P(MALA ∩ BAJO) = P(MALA) * P(BAJO) puesto que dice el enunciado que son 
 # independientes
 
-# P(MALA ∩ BAJO) = P(MALA) * P(BAJO) = 0.7 * P(W <= p1 = 224.15)
+# P(MALA ∩ BAJO) = P(MALA) * P(BAJO) = 0.04* P(W <= p1 = 224.15)
 
 (categories_percentage[3]/100) * pnorm(p1, mean, sd)
 
@@ -120,6 +120,81 @@ p <- (categories_percentage[2]/100) + (categories_percentage[1]/100)
 
 1 - pbinom(8, 10, p)
 
+# Probabilidad de que, de 10 clientes seleccionados al azar, no haya ninguno 
+# que tenga conexión EXCELENTE y haya generado un tráfico BAJO.
+
+# Calculamos la probabilidad de que haya un cliente que tenga conexión EXCELENTE
+# y haya generado un tráfico BAJO.
+
+# P(EXCELENTE ∩ BAJO) = P(EXCELENTE) * P(BAJO), puesto que, según el enunciado, 
+# los sucesos son independientes.
+
+# P(EXCELENTE ∩ BAJO) = P(EXCELENTE) * P(BAJO) = 0.7 * P(W <= p1 = 224.15)
+
+q <- (categories_percentage[1]/100) * pnorm(p1, mean, sd)
+
+# Falta calcular que de 10 clientes elegidos al azar, no haya ninguno que tenga
+# conexión EXCELENTE y haya generado un tráfico BAJO
+
+# De nuevo, tenemos una distribución binomial con n = 10, p = 0.2333333, 
+# calculada anteriormente. Hay que calcular
+# P(número de clientes tenga conexión EXCELENTE y haya generado tráfico BAJO = 0) 
+
+dbinom(0, 10, q)
+
+
 #------------------------------------------------------------------------------
 # Tarea III
 #------------------------------------------------------------------------------
+
+# Definimos las variables con las probabilidades de los cuestionario y los
+# que no han sido contestados
+
+C1 = 0.4
+C2 = 0.3
+C3 = 0.2
+C4 = 0.1
+C1_NC = 0.01
+C2_NC = 0.02
+C3_NC = 0.07
+C4_NC = 0.04
+
+# Probabilidad de que se haya contestado al cuestionario, si se elige un
+# cliente al azar
+
+# Aplicando el teorema de la probabilidad total, la probabilidad pedida es
+
+C1 * (1 - C1_NC) + C2 * (1 - C2_NC) + C3 * (1 - C3_NC) + C4 * (1 - C4_NC)
+
+# Si un cliente no ha contestado a su cuestionario, ¿qué cuestionario es más 
+# probable que hubiese recibido?
+
+# Calculamos la probabilidad de que no contestar a un cuestionario
+
+q2 <- C1 * C1_NC + C2 * C2_NC + C3 * C3_NC + C4 * C4_NC
+
+# Aplicamos el teorema de Bayes para cada uno de los cuestionarios.
+# P(C_i | NC) = P(NC | C_i) * P(C_i) / P(NC)
+
+c <- c(C1, C2, C3, C4)
+c_NC <- c(C1_NC, C2_NC, C3_NC, C4_NC)
+
+bayes <- c*c_NC/q2
+
+# Probabilidad de que al menos haya #un cuestionario sin contestar, si tomamos
+# 4 clientes al azar
+  
+# La probabilidad de no contestar un cuestionario es:
+
+q2 <- C1 * C1_NC + C2 * C2_NC + C3 * C3_NC + C4 * C4_NC
+
+# Tenemos de nuevo una distribución binomial con n = 4, p = 0.028
+
+# P(Cuestionarios sin contestar >= 1) = 1 - P(Cuestionarios sin contestar < 1) = 
+# P(Cuestionarios sin contestar = 0)
+
+1 - dbinom(0, 4, q2)
+
+# Si cambiamos 4 por 200, la probabilidad es
+
+1 - dbinom(0, 200, q2)
