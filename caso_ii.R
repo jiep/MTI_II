@@ -24,7 +24,8 @@ categories_count <- c(0,0,0)
 for(i in 1:n) {
   if(x[i] <= 2){ # Si la categia es EXCELENTE, aumentamos en 1 la cuenta
     categories_count[1] <- categories_count[1] + 1
-  }else if(x[i] == 3 | x[i] == 4){ # Si la categia es BUENA, aumentamos en 1 la cuenta
+  }else if(x[i] == 3 | x[i] == 4){ # Si la categia es BUENA, aumentamos en 1 
+                                   # la cuenta
     categories_count[2] <- categories_count[2] + 1
   }else if(x[i] >= 5){ # Si la categia es MALA, aumentamos en 1 la cuenta
     categories_count[3] <- categories_count[3] + 1
@@ -59,8 +60,8 @@ p2 <- qnorm(2/3, 250, 60)
 
 # Dibujamos la distribución
 curve(xlim=c(mean-6*sd, mean+6*sd), dnorm(x,mean,sd), lwd=0, main="Función de 
-    densidad la variable W = \"número de KB transmitidos \" ~ N(250, 60)", xlab="Tráfico 
-    transmitido (KB)", ylab="Probabilidad")
+    densidad la variable W = \"número de KB transmitidos \" ~ N(250, 60)", 
+    xlab="Tráfico transmitido (KB)", ylab="Probabilidad")
 
 # Dibujamos las regiones "Tráfico bajo", "Tráfico medio" y "Tráfico alto"
 cords1.x <- c(mean-6*sd, seq(mean-6*sd, p1, 0.01), p1)
@@ -85,10 +86,11 @@ samples_BAJO = sum(samples <= p1)
 samples_MEDIO = sum(samples > p1 & samples < p2)
 samples_ALTO = sum(samples >= p2)
 
-samples_percentages <- c(samples_BAJO, samples_MEDIO, samples_ALTO)/n_samples*100
+samples_percentages <- c(samples_BAJO, samples_MEDIO, samples_ALTO)/
+  n_samples*100
 
-# Probabilidad de un cliente tenga una conexión MALA y haya generado un tráfico
-# BAJO
+# Probabilidad de un cliente tenga una conexión MALA y haya generado un 
+# tráfico BAJO
 
 # P(MALA ∩ BAJO) = P(MALA) * P(BAJO) puesto que dice el enunciado que son 
 # independientes
@@ -97,22 +99,25 @@ samples_percentages <- c(samples_BAJO, samples_MEDIO, samples_ALTO)/n_samples*10
 
 (categories_percentage[3]/100) * pnorm(p1, mean, sd)
 
-# Probabilidad de que, de 10 clientes seleccionados al azar, al menos 9 de ellos 
-# tengan conexión BUENA o EXCELENTE
+# Probabilidad de que, de 10 clientes seleccionados al azar, al menos 9 
+# de ellos tengan conexión BUENA o EXCELENTE
 
-# Primero calculamos la probabilidad de que se tenga una conexión BUENA o EXCELENTE.
-# Es decir, P(BUENA ∪ EXCELENTE) = P(BUENA) + P(EXCELENTE) - P(BUENA ∩ EXCELENTE) 
-# = P(BUENA) + P(EXCELENTE), puesto que tener conexión BUENA y tener conexión 
-# EXCELENTE son sucesos disjuntos.
+# Primero calculamos la probabilidad de que se tenga una conexión BUENA o 
+# EXCELENTE.
+# Es decir, P(BUENA ∪ EXCELENTE) = P(BUENA) + P(EXCELENTE) -
+# P(BUENA ∩ EXCELENTE) = P(BUENA) + P(EXCELENTE), 
+# puesto que tener conexión BUENA y tener conexión EXCELENTE son 
+# sucesos disjuntos.
 
 # P(BUENA ∪ EXCELENTE) = P(BUENA) + P(EXCELENTE)
 p <- (categories_percentage[2]/100) + (categories_percentage[1]/100)
 
-# Una vez que hemos calculado esta probabilidad, calculamos la probabilidad de que al 
-# menos 9 de 10 clientes elegidos al azar tengan una conexión BUENA o EXCELENTE
+# Una vez que hemos calculado esta probabilidad, calculamos la probabilidad 
+# de que al menos 9 de 10 clientes elegidos al azar tengan una conexión 
+# BUENA o EXCELENTE
 
-# En este caso tenemos una distribución binomial con n = 10 y p = 0.96, calculada
-# anteriormente
+# En este caso tenemos una distribución binomial con n = 10 y p = 0.96, 
+# calculada anteriormente
 
 # P(número de clientes con conexión BUENA o EXCELENTE >= 9) 
 # = 1 - P(número de clientes con conexión BUENA o EXCELENTE < 9) = 
@@ -123,22 +128,23 @@ p <- (categories_percentage[2]/100) + (categories_percentage[1]/100)
 # Probabilidad de que, de 10 clientes seleccionados al azar, no haya ninguno 
 # que tenga conexión EXCELENTE y haya generado un tráfico BAJO.
 
-# Calculamos la probabilidad de que haya un cliente que tenga conexión EXCELENTE
-# y haya generado un tráfico BAJO.
+# Calculamos la probabilidad de que haya un cliente que tenga conexión 
+# EXCELENTE y haya generado un tráfico BAJO.
 
-# P(EXCELENTE ∩ BAJO) = P(EXCELENTE) * P(BAJO), puesto que, según el enunciado, 
-# los sucesos son independientes.
+# P(EXCELENTE ∩ BAJO) = P(EXCELENTE) * P(BAJO), puesto que, según el
+# enunciado, los sucesos son independientes.
 
 # P(EXCELENTE ∩ BAJO) = P(EXCELENTE) * P(BAJO) = 0.7 * P(W <= p1 = 224.15)
 
 q <- (categories_percentage[1]/100) * pnorm(p1, mean, sd)
 
-# Falta calcular que de 10 clientes elegidos al azar, no haya ninguno que tenga
-# conexión EXCELENTE y haya generado un tráfico BAJO
+# Falta calcular que de 10 clientes elegidos al azar, no haya ninguno que 
+# tenga conexión EXCELENTE y haya generado un tráfico BAJO
 
 # De nuevo, tenemos una distribución binomial con n = 10, p = 0.2333333, 
 # calculada anteriormente. Hay que calcular
-# P(número de clientes tenga conexión EXCELENTE y haya generado tráfico BAJO = 0) 
+# P(número de clientes tenga conexión EXCELENTE y haya generado tráfico 
+# BAJO = 0) 
 
 dbinom(0, 10, q)
 

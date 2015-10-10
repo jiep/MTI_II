@@ -69,6 +69,8 @@
 
 \section{Introducción}
 
+La empresa WEBSYMASWEBS quiere conocer la calidad de las conexiones, midiendo el número de intentos hasta concertarse a una página web. Para ello contrata a una consultora para que hagan el informe. Además de la conexión, se mide el tráfico que se genera al realizar la conexión, y el grado de satisfacción de los clientes a través de una serie de cuestionarios.
+
 \section{Resolución del caso práctico}
 
 A continuación resolveremos las tres partes de las que consta el caso práctico: la primera es sobre el número de intentos al acceder a la página web; la segunda es de el tráfico que se registró al acceder a la página web; y la tercera, sobre una encuesta que se hizo para conocer el grado de satisfacción 
@@ -229,7 +231,7 @@ Antes de calcular las probabilidades hacemos el modelo gráfico, que se muestra 
               edge from parent node [above] {$0.04$} }
            edge from parent node [above] {$0.1$} };
 \end{tikzpicture}
-\caption{Modelo gráfico de la Tarea III}
+\caption{Modelo gráfico de la Tarea III. $C_i$ denota el suceso de recibir el cuestionario $C_i$ con $i = 1,2,3,4$, $NC$ es el suceso de no contestar al cuestionario, y $C$ es el suceso de contestar al cuestionario}
 \label{fig:modelo_grafico}
 \end{figure}
 
@@ -276,6 +278,8 @@ P(NC \geq 1) &= 1 - P(NC < 1) \\ &= 1 - P(NC = 0) \\ &= 1 - 0.003 \\ &= 0.997
 \end{itemize}
 
 \section{Conclusiones}
+
+En este caso práctico hemos puesto en práctica la teoría del cálculo de probabilidades así como los teoremas clásicos de ésta (Teorema de la Probabilidad Total y el Teorema de Bayes). También hemos utilizado dos de las distribuciones más usadas: la distribución normal y la distribución binomial. Para calcular las probabilidades pedidas, nos valimos de R para calcular éstas de forma fácil y eficiente.    
 
 \newpage
 
