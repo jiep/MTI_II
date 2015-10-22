@@ -179,8 +179,126 @@ La opción más arriesgada es la tercera, donde hay más probabilidades de no pe
 
 \subsection{Tarea VI}
 
+Si denotamos con $X$ el tiempo (en minutos) hasta que llegan las tartas encargadas a la sede de la SICAV, entonces $X \sim \mathcal{U}(25,45)$.\\
+
+\textcolor{red}{Hacer gráficas}
+
+La esperanza de una de una distribución uniforme de parámetros $(a, b)$ viene dada por
+
+\begin{align*}
+E[X] & = \dfrac{a + b}{2}\\
+Var[X] & = \dfrac{(b-a)^2}{12}
+\end{align*}
+
+Haciendo $a = 25$ y $b = 45$, se tiene que
+
+\begin{align*}
+E[X] & = \dfrac{25+45}{2}\\
+Var[X] & = \dfrac{(45-25)^2}{12} = \dfrac{100}{3}
+\end{align*}
+
+La probabilidad de que $X$ sea, como mucho, 30 minutos es $P(X \leq 30)$.\\
+
+\begin{align*}
+P(X \leq 30) & = \int_{25}^{30} \dfrac{1}{45 -25} \ dx \\
+& = \dfrac{1}{20}\left[x\right]_{25}^{30} \\ & = \dfrac{1}{4}
+\end{align*}
+
+La probabilidad de que $X$ esté comprendido entre 30 y 40 minutos es $P(30 \leq X \leq 40)$.\\
+
+\begin{align*}
+P(30 \leq X \leq 40) & = \int_{30}^{40} \dfrac{1}{45 -25} \ dx \\
+& = \dfrac{1}{20}\left[x\right]_{40}^{30} \\ & = \dfrac{1}{2}
+\end{align*}
+
+Calculamos el percentil 90 de la distribución. Es decir tenemos que encontrar el número $a$ tal que acumula el 90\% de la probabilidad. Es decir,
+
+\begin{align*}
+\int_{25}^{a} \dfrac{1}{45 - 25} \ dx = 0.9
+\end{align*}
+
+\begin{align*}
+\dfrac{1}{20}\int_{25}^{a} dx = \dfrac{1}{20} \left[x\right]_{25}^{a} = \dfrac{1}{20}(a - 25) = 0.9
+\end{align*}
+
+Despejando $a$ se tiene que $a = 0.9 \cdot 20 + 25 = 43$.\\
+
+Es decir, el 90\% de las tartas llegará en un tiempo menor o igual a 43 minutos.\\
+
+La probabilidad de que el tiempo $X$ sea mayor de 40 minutos sabiendo que dicho tiempo es de al menos 30 minutos es $P(X > 40 | X > 30)$.
+
+\begin{align*}
+P(X > 40 | X > 30) & = \dfrac{P(\{X > 40\}\cap \{X > 30\})}{P(X > 30)} \\
+& = \dfrac{P(X > 40)}{P(X > 30)} \\ & = \dfrac{1 - P(X \leq 40)}{1 - P(X \leq 30)} \\
+& = \dfrac{1 - \int_{25}^{40} \dfrac{1}{20} \ dx}{1 - \int_{25}^{30} \dfrac{1}{20} \ dx} \\
+& = \dfrac{1 - \dfrac{1}{20}(40-25)}{1 - \dfrac{1}{20}(30-25)} \\
+& = \dfrac{1- \dfrac{3}{4}}{1 - \dfrac{1}{4}} \\
+& = \dfrac{1}{3}
+\end{align*}
+
+Por tanto, sabiendo que el tiempo de llegada de las tartas va a ser mayor de 30 minutos, tenemos un 33.\textbar{3} \% de probabilidades de que tarden más de 40 minutos.
 
 \subsection{Tarea VII}
+
+Si ahora denotamos con $X$ al tiempo (en miutos) que dura una llamada cualquiera realizada por un trabajador de VACIS a un teléfono externo, tenemos que $X \sim \mathcal{E}xp(\lambda)$. Se sabe que la duración media de una llamada es de 8 minutos.\\
+
+Así pues, sabemos que $E[X] = \dfrac{1}{\lambda}$. Por otro lado, tenemos que la duración media de las llamadas es de 8 minutos, es decir, $E[X] = 8$. Si igualamos y despajamos $\lambda$ tenemos que $\lambda = \dfrac{1}{8}$. Por tanto, $X \sim \mathcal{E}xp(\dfrac{1}{8})$.\\
+
+\textcolor{red}{Representar las funciones de distribución y de densidad}\\
+
+La esperanza y la varianza de una distribución exponencial con parámetro $\lambda$ viene dada por
+
+\begin{align*}
+E[X] & = \dfrac{1}{\lambda} \\
+Var[X] & = \dfrac{1}{\lambda^2}
+\end{align*}
+
+Sustituyendo $\lambda  = \dfrac{1}{8}$, tenemos que
+
+\begin{align*}
+E[X] & = \dfrac{1}{\dfrac{1}{8}} = 8 \\
+Var[X] & = \dfrac{1}{\left(\dfrac{1}{8}\right)^2} = 64
+\end{align*}
+
+La probabilidad de que una llamada cualquiera a móvil dure menos de 9 minutos es $P(X < 9)$,
+
+\begin{align*}
+P(X < 9) & = \int_{0}^{9} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx \\
+& = -\left[ e^{-\dfrac{x}{8}} \right]_0^9
+& = 1 - e^{-\dfrac{9}{8}} \\
+& = 0.675
+\end{align*}
+
+La probabilidad de que una llamada cualquiera a móvil dure entre 7 y 9 miutos es $P(7 \leq X \leq 9)$,
+
+\begin{align*}
+P(7 \leq X \leq 9) & = \int_{7}^{9} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx \\
+& = -\left[ e^{-\dfrac{x}{8}} \right]_7^9
+& = -e^{-\dfrac{9}{8}} + e^{-\dfrac{7}{8}} \\
+& = 0.092
+\end{align*}
+
+Calculamos el percentil 80 de esta distribución, es decir, el número $a$ tal que la probabilidad acumulada de la distribución es del 80\%. Es decir,
+
+\begin{align*}
+\int_{0}^{a} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx = 0.8
+\end{align*}
+
+\begin{align*}
+\int_{0}^{a} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx = - \left[ e^{-\dfrac{x}{8}} \right]_0^a \\
+& = -e^{\dfrac{a}{8}} + 1 \\
+& = 0.8
+\end{align*}
+
+Tomando logaritmos a ambos lados de la expresión anterior, se tiene que $a = -8 \cdot \ln 0.2 = 12.875$.\\
+
+Por tanto, el 80\% de las llamadas tienen una duración inferior a 12.875 minutos.\\
+
+Si se realizan un total de 1000 llamadas a móvil, el tiempo total de esas llamadas es de 8000 minutos, ya que la duración media de una llamada cualquiera es de 8 minutos. Así 1000 llamadas $\cdot$ 8 minutos/llamada = 8000 minutos. Si queremos ser más precisos, con nuestra estimación podemos calcular un intervalo de probabilidad al 90\%.\\
+
+Normalmente, calculamos los intervalos de probabilidad bilaterales, pero en este caso, por tratarse de una distribución con alta simetría hacia la derecha, calcularemos el intervalo con los cuantiles 0 y 0.90. Si calculamos estas probabilidades como en el apartado anterior tenemos que el intervalo es $(0, 18.42)$. Es decir, el 90\% de las llamadas estarán entre 0 y 18.42 minutos. Por tanto, el número de minutos a diario estará entre 0 y 18420 minutos diarios.\\
+
+\textcolor{red}{Hacer gráfica con el intervalo de probabilidad} 
 
 \section{Conclusiones}
    
