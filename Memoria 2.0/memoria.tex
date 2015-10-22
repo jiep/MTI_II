@@ -74,7 +74,7 @@
 
 
 
-\subsection{Tarea VI}
+\subsection{Tarea IV}
 
 El beneficio de cada inversión viene dado por la diferencia entre los beneficios netos y la inversión (1 millón de euros). Así, por tanto, si se pierde todo lo invertido tenemos que el beneficio es -1 (los beneficios netos son cero y la inversión 1); cuando no se obtiene beneficio neto ni se pierde la inversión tenemos que los beneficios son 0.\\
 
@@ -171,7 +171,45 @@ P(X_3 \geq 0) & = 1 - P(X_3 < 0) \\ & = 1 - P(X_3 = -1) \\ & = 1 - 0.2 \\ & = 0.
 
 La opción más arriesgada es la tercera, donde hay más probabilidades de no perder dinero, pero hay un 70\% de no ganar nada, aunque en caso de ganar, ganaremos la mayor cantidad de dinero de todas las inversiones, 6 millones de euros.\\
 
- 
+Calculamos la probabilidad de que la inversión más arriesgada proporcione más beneficios que la más segura, es decir, $P(X_3 > X_2)$. Tenemos, una variable bidimensional. Calculamos la función de masa conjunta $f(X_3 = x, X_2 = y) = f(X_3 = x) \cdot f(X_2 = y) \ \forall (x,y) \in \Omega_3 \times \Omega_2$, suponiendo independencia entre las variables (en principio, se puede suponer que los beneficios de una empresa no dependen de la otra). La función de masa conjunta viene dada por la siguiente tabla:
+
+\begin{table}[htbp!]
+\centering
+\begin{tabular}{cccc}
+\hline
+$X_3$ \textbackslash $X_2$ & -1                     & 1                      & 3                      \\ \hline
+-1                         & $0.2 \cdot 0.4 = 0.08$ & $0.2 \cdot 0.4 = 0.08$ & $0.2 \cdot 0.2 = 0.04$ \\ \hline
+0                          & $0.7 \cdot 0.4 = 0.28$ & $0.7 \cdot 0.4 = 0.28$ & $0.7 \cdot 0.4 = 0.28$ \\ \hline
+6                          & $0.1 \cdot 0.4 = 0.04$ & $0.1 \cdot 0.4 = 0.04$ & $0.1 \cdot 0.2 = 0.02$ \\ \hline
+\end{tabular}
+\end{table}
+
+Tenemos que ver qué puntos de $\mathbb{R}^2$ cumplen que $X_3 > X_2$. Si representamos cada punto en el plano (Figura~\ref{fig:puntos_discreta}), vemos que los únicos que cumplen la condición anterior son $\Pi = \{(0,-1), (6,-1), (6,1), (6,3)\}$.\\
+
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=0.9\linewidth]{imagenes/puntos_discreta}
+\caption{Puntos de la función conjunta de masa}
+\label{fig:puntos_discreta}
+\end{figure}
+
+Por tanto, la probabilidad pedida se calcula sumando las probabilidades de cada punto $f(x,y) \ \forall (x,y) \in \Pi$, calculadas en la tabla anterior. Esto es,
+
+\begin{align*}
+P(X_3 > X_2) & = f(0,-1) + f(6, -1) + f(6,1) + f(6,3) \\
+& = 0.28 + 0.04 + 0.04 + 0.08 \\
+& = 0.44
+\end{align*} 
+
+Si 10 SICAV invierten cada una un millón de euros en la empresa con más riesgos y otro millón en las empresa más segura, calculamos cuántas de ellas es de esperar que obtengan más beneficios de la inversión más arriesgada que de la más segura. Tenemos una variable aleatoria binomial con $n =10$ y $p = 0.44$, calculada en el apartado enterior. Así pues,
+
+\begin{align*}
+E[X] & = n \cdot p \\
+& = 10 \cdot 0.44 \\
+& = 4.4 
+\end{align*}
+
+Es decir, 4 de las 10 SICAVS obtendrán un beneficio mayor con la inversión más arriesgada que con la más segura.
 
 \subsection{Tarea V}
 
@@ -179,9 +217,14 @@ La opción más arriesgada es la tercera, donde hay más probabilidades de no pe
 
 \subsection{Tarea VI}
 
-Si denotamos con $X$ el tiempo (en minutos) hasta que llegan las tartas encargadas a la sede de la SICAV, entonces $X \sim \mathcal{U}(25,45)$.\\
+Si denotamos con $X$ el tiempo (en minutos) hasta que llegan las tartas encargadas a la sede de la SICAV, entonces $X \sim \mathcal{U}(25,45)$. La Figura~\ref{fig:funcion_distribucion_uniforme} muestra las funciones de densidad y distribución de esta variable aleatoria.\\
 
-\textcolor{red}{Hacer gráficas}
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=0.9\linewidth]{imagenes/funcion_distribucion_uniforme}
+\caption{Funciones de densidad y distribución de la distribución uniforme}
+\label{fig:funcion_distribucion_uniforme}
+\end{figure}
 
 La esperanza de una de una distribución uniforme de parámetros $(a, b)$ viene dada por
 
@@ -228,7 +271,7 @@ Es decir, el 90\% de las tartas llegará en un tiempo menor o igual a 43 minutos
 La probabilidad de que el tiempo $X$ sea mayor de 40 minutos sabiendo que dicho tiempo es de al menos 30 minutos es $P(X > 40 | X > 30)$.
 
 \begin{align*}
-P(X > 40 | X > 30) & = \dfrac{P(\{X > 40\}\cap \{X > 30\})}{P(X > 30)} \\
+\displaystyle P(X > 40 | X > 30) & = \dfrac{P(\{X > 40\}\cap \{X > 30\})}{P(X > 30)} \\
 & = \dfrac{P(X > 40)}{P(X > 30)} \\ & = \dfrac{1 - P(X \leq 40)}{1 - P(X \leq 30)} \\
 & = \dfrac{1 - \int_{25}^{40} \dfrac{1}{20} \ dx}{1 - \int_{25}^{30} \dfrac{1}{20} \ dx} \\
 & = \dfrac{1 - \dfrac{1}{20}(40-25)}{1 - \dfrac{1}{20}(30-25)} \\
@@ -236,15 +279,20 @@ P(X > 40 | X > 30) & = \dfrac{P(\{X > 40\}\cap \{X > 30\})}{P(X > 30)} \\
 & = \dfrac{1}{3}
 \end{align*}
 
-Por tanto, sabiendo que el tiempo de llegada de las tartas va a ser mayor de 30 minutos, tenemos un 33.\textbar{3} \% de probabilidades de que tarden más de 40 minutos.
+Por tanto, sabiendo que el tiempo de llegada de las tartas va a ser mayor de 30 minutos, tenemos un 33.\textbar{3}\% de probabilidades de que tarden más de 40 minutos.
 
 \subsection{Tarea VII}
 
 Si ahora denotamos con $X$ al tiempo (en miutos) que dura una llamada cualquiera realizada por un trabajador de VACIS a un teléfono externo, tenemos que $X \sim \mathcal{E}xp(\lambda)$. Se sabe que la duración media de una llamada es de 8 minutos.\\
 
-Así pues, sabemos que $E[X] = \dfrac{1}{\lambda}$. Por otro lado, tenemos que la duración media de las llamadas es de 8 minutos, es decir, $E[X] = 8$. Si igualamos y despajamos $\lambda$ tenemos que $\lambda = \dfrac{1}{8}$. Por tanto, $X \sim \mathcal{E}xp(\dfrac{1}{8})$.\\
+Así pues, sabemos que $E[X] = \dfrac{1}{\lambda}$. Por otro lado, tenemos que la duración media de las llamadas es de 8 minutos, es decir, $E[X] = 8$. Si igualamos y despajamos $\lambda$ tenemos que $\lambda = \dfrac{1}{8}$. Por tanto, $X \sim \mathcal{E}xp(\dfrac{1}{8})$. La Figura~\ref{fig:funcion_distribucion_exponencial} muestra tanto la función de densidad como la de distribución de esta variable aleatoria.\\
 
-\textcolor{red}{Representar las funciones de distribución y de densidad}\\
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=0.9\linewidth]{imagenes/funcion_distribucion_exponencial}
+\caption{Funciones de densidad y distribución de la distribución exponencial}
+\label{fig:funcion_distribucion_exponencial}
+\end{figure}
 
 La esperanza y la varianza de una distribución exponencial con parámetro $\lambda$ viene dada por
 
@@ -264,7 +312,7 @@ La probabilidad de que una llamada cualquiera a móvil dure menos de 9 minutos e
 
 \begin{align*}
 P(X < 9) & = \int_{0}^{9} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx \\
-& = -\left[ e^{-\dfrac{x}{8}} \right]_0^9
+& = -\left[ e^{-\dfrac{x}{8}} \right]_0^9 \\
 & = 1 - e^{-\dfrac{9}{8}} \\
 & = 0.675
 \end{align*}
@@ -272,33 +320,95 @@ P(X < 9) & = \int_{0}^{9} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx \\
 La probabilidad de que una llamada cualquiera a móvil dure entre 7 y 9 miutos es $P(7 \leq X \leq 9)$,
 
 \begin{align*}
-P(7 \leq X \leq 9) & = \int_{7}^{9} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx \\
-& = -\left[ e^{-\dfrac{x}{8}} \right]_7^9
-& = -e^{-\dfrac{9}{8}} + e^{-\dfrac{7}{8}} \\
+P(7 \leq X \leq 9) & = \int_{7}^{9} \frac{1}{8} e^{-\frac{x}{8}} \ dx \\
+& = -\left[ e^{-\frac{x}{8}} \right]_7^9 \\
+& = -e^{-\frac{9}{8}} + e^{-\frac{7}{8}} \\
 & = 0.092
 \end{align*}
 
 Calculamos el percentil 80 de esta distribución, es decir, el número $a$ tal que la probabilidad acumulada de la distribución es del 80\%. Es decir,
 
 \begin{align*}
-\int_{0}^{a} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx = 0.8
+\int_{0}^{a} \frac{1}{8} e^{-\frac{x}{8}} \ dx = 0.8
 \end{align*}
 
 \begin{align*}
-\int_{0}^{a} \dfrac{1}{8} e^{-\dfrac{x}{8}} \ dx = - \left[ e^{-\dfrac{x}{8}} \right]_0^a \\
-& = -e^{\dfrac{a}{8}} + 1 \\
+\int_{0}^{a} \frac{1}{8} e^{-\frac{x}{8}} \ dx & = - \left[ e^{-\frac{x}{8}} \right]_0^a \\
+& = -e^{\frac{a}{8}} + 1 \\
 & = 0.8
 \end{align*}
 
-Tomando logaritmos a ambos lados de la expresión anterior, se tiene que $a = -8 \cdot \ln 0.2 = 12.875$.\\
+Tomando logaritmos a ambos lados de la expresión anterior, se tiene que 
+
+\begin{align*}
+a = -8 \cdot \ln 0.2 = 12.875
+\end{align*}
 
 Por tanto, el 80\% de las llamadas tienen una duración inferior a 12.875 minutos.\\
 
-Si se realizan un total de 1000 llamadas a móvil, el tiempo total de esas llamadas es de 8000 minutos, ya que la duración media de una llamada cualquiera es de 8 minutos. Así 1000 llamadas $\cdot$ 8 minutos/llamada = 8000 minutos. Si queremos ser más precisos, con nuestra estimación podemos calcular un intervalo de probabilidad al 90\%.\\
+un total de 1000 llamadas a móvil, el tiempo total de esas llamadas es de 8000 minutos, ya que la duración media de una llamada cualquiera es de 8 minutos. Así 1000 llamadas $\cdot$ 8 minutos/llamada = 8000 minutos. Si queremos ser más precisos, con nuestra estimación podemos calcular un intervalo de probabilidad al 90\%.\\
 
-Normalmente, calculamos los intervalos de probabilidad bilaterales, pero en este caso, por tratarse de una distribución con alta simetría hacia la derecha, calcularemos el intervalo con los cuantiles 0 y 0.90. Si calculamos estas probabilidades como en el apartado anterior tenemos que el intervalo es $(0, 18.42)$. Es decir, el 90\% de las llamadas estarán entre 0 y 18.42 minutos. Por tanto, el número de minutos a diario estará entre 0 y 18420 minutos diarios.\\
+Normalmente, calculamos los intervalos de probabilidad bilaterales, pero en este caso, por tratarse de una distribución con alta simetría hacia la derecha, calcularemos el intervalo con los cuantiles 0 y 0.90. Si calculamos estas probabilidades como en el apartado anterior tenemos que el intervalo es $(0, 18.42)$ (Figura~\ref{fig:intervalo_probabilidad_exponencial}). Es decir, el 90\% de las llamadas estarán entre 0 y 18.42 minutos. Por tanto, el número de minutos a diario estará entre 0 y 18420 minutos diarios.\\
 
-\textcolor{red}{Hacer gráfica con el intervalo de probabilidad} 
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=0.9\linewidth]{imagenes/intervalo_probabilidad_exponencial}
+\caption{Funciones de densidad e intervalo de probabilidad al 90\% de la distribución exponencial}
+\label{fig:intervalo_probabilidad_exponencial}
+\end{figure}
+
+Si nuestra tarifa móvil actual (en minutos) es:
+
+\begin{align*}
+Y = \begin{cases}
+0.1 + 0.6X & \text{si } X < 1 \\
+0.1 + 0.3X & \text{si } X \geq 1
+\end{cases}
+\end{align*}
+
+El coste medio de esta nueva variable aleatoria viene dado por su esperanza,
+
+\begin{align*}
+E[Y] = \begin{cases}
+0.1 + 0.6E[X] & \text{si } X < 1 \\
+0.1 + 0.3E[X] & \text{si } X \geq 1
+\end{cases} = \begin{cases}
+4.9 & \text{si } X < 1 \\
+2.5 & \text{si } X \geq 1
+\end{cases}
+\end{align*}
+
+Por otro lado, la probabilidad de tener una llamada de menor de un minuto es de 11.7\%, y la tener una llamada superior a un minuto es de 88.3\%. Usamos estas probabilidades para ponderar el coste medio de una llamada.\\
+
+\begin{align*}
+E[Y] & = 0.117 \cdot 4.9 + 0.883 \cdot 2.5 \\
+& = 2.7808
+\end{align*}
+
+Por tanto, el coste medio para una llamada es de 2.78€. Si se realizan 1000 llamadas el coste es de 2780€.\\
+
+Para calcular la varianza, procedemos como con la esperanza.\\
+
+\begin{align*}
+Var[Y] = \begin{cases}
+0.6^2 \cdot Var[X] & \text{si } X < 1 \\
+0.3^2 \cdot Var[X] & \text{si } X \geq 1
+\end{cases} = \begin{cases}
+23.04  & \text{si } X < 1 \\
+5.76 & \text{si } X \geq 1
+\end{cases}
+\end{align*} 
+
+Ponderando como con la media se obtiene que $Var[Y] = 7.781$. Por tanto, la desviación típica es $2.789$\\
+
+Si repetimos lo anterior, pero haciendo una simulación, es decir, generamos 1000 muestras de una distribución exponencial con parámetro $\lambda = \dfrac{1}{8}$. Aplicamos nuestra función de coste a cada una de nuestras muestras, y calculamos la media y la varianza. En nuestro caso, el coste medio por llamada es de 2.601€, el coste total es de 2601.67€ y la desviación típica es de 2.530€. La Figura~\ref{fig:simulacion} muestra la duración y el coste de las 1000 llamadas simuladas.\\
+
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=0.9\linewidth]{imagenes/simulacion}
+\caption{Simulación del coste de 1000 llamadas}
+\label{fig:simulacion}
+\end{figure}
 
 \section{Conclusiones}
    
