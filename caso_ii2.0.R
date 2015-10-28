@@ -76,6 +76,22 @@ curve(punif(x, a, b), from = a - 5, to = b + 5, main = "Función de distribució
   ylab = "Probabilidad acumulada", col = 4, lwd=3)
 
 #------------------------------------------------------------------------------
+# Tarea V
+#------------------------------------------------------------------------------
+
+# Definimos el parámetro de una distribución de Poisson(3/2)
+lambda <- 3/2
+
+# Probabilidad de que no haya trozos de cáscara de huevo
+ppois(0, lambda)
+
+# Probabilidad de que haya siete trozos de huevo en una tarta
+dpois(7, lambda)
+
+# Probabilidad de que en 6 tartas no haya en ninguna ningún trozo de cáscaras de
+# huevo
+
+#------------------------------------------------------------------------------
 # Tarea VII
 #------------------------------------------------------------------------------
 

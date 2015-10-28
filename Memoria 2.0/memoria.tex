@@ -213,11 +213,36 @@ Es decir, 4 de las 10 SICAVS obtendrán un beneficio mayor con la inversión má
 
 \subsection{Tarea V}
 
+Si denotamos con $X$ al número de trozos de cáscara de huevo que hay una tarta. Por el enunciado, deducimos que $E[X] = \frac{3}{2}$. Tenemos que $X \sim \mathcal{P}ois(\lambda)$. Por otro lado, la esperanza de una distribución Poisson de parámetro $\lambda$ es igual ese mismo parámetro. Por tanto, tenemos que $\lambda = \frac{3}{2}$ y $X \sim \mathcal{P}ois(\frac{3}{2})$.
 
+A tenor de lo anterior, el el número esperado de trocitos en una tarta es $E[X] = \frac{3}{2}$.\\
+
+La probabilidad de que no haya ningún trozo de tarta en la tarta es $P(X=0)$,
+
+\begin{align*}
+P(X=0) & = \dfrac{e^{\frac{-3}{2}} \left(\frac{3}{2}\right)^0 }{0!} \\ & = 0.2231
+\end{align*}
+
+Calculamos la probabilidad de que haya siete trozos de cáscara de huevo en una tarta, $P(X=7)$,
+
+\begin{align*}
+P(X=7) & = \dfrac{e^{\frac{-3}{2}} \left(\frac{3}{2}\right)^7}{7!} \\ & = 0.0007
+\end{align*}
+
+Por tanto, es posible que nos encontráramos una tarta con siete trozos de cáscara de huevo, aunque es muy poco probable: de cada 1000 tartas, 7 tienen siete trozos de cáscara de huevo.\\
+
+Si pedimos 6 tartas, la probabilidad de que no haya ningún trocito en ninguna de las tartas, se calcula de la siguiente manera: tenemos una variable aleatoria $Y \sim \mathcal{B}in(n=6, p = 0.2231)$ donde $p$ lo hemos calculado en los apartados anteriores. Así, la probabilidad pedida es $P(Y = 6)$,
+
+\begin{align*}
+P(Y=6) & = \binom{6}{6}0.2231^6 (1-0.2231)^0 \\ & = 0.00012
+\end{align*}
+
+Es muy poco probable que en las 6 tartas pedidas, en ninguna de ellas no haya ningún trozo de cáscara de huevo.
 
 \subsection{Tarea VI}
 
 Si denotamos con $X$ el tiempo (en minutos) hasta que llegan las tartas encargadas a la sede de la SICAV, entonces $X \sim \mathcal{U}(25,45)$. La Figura~\ref{fig:funcion_distribucion_uniforme} muestra las funciones de densidad y distribución de esta variable aleatoria.\\
+
 
 \begin{figure}[tbph!]
 \centering
@@ -411,7 +436,8 @@ Si repetimos lo anterior, pero haciendo una simulación, es decir, generamos 100
 \end{figure}
 
 \section{Conclusiones}
-   
+
+En este caso práctico hemos puesto en práctica lo aprendido en teoría sobre variables aleatorias --tanto continuas como discretas-- y cálculo de probabilidades, y hemos aplicado estas variables aleatorias para modelizar distintos tipos de problemas. R nos ha permitido calcular probabilidades y representar gráficos de forma rápida, ahorrándonos una gran cantidad de tiempo. 
 
 \newpage
 
