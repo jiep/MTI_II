@@ -109,14 +109,7 @@ cords.x <- c(lb, seq(lb, ub, 0.01), ub)
 cords.y <- c(0, dexp(seq(lb, ub, 0.01), lambda), 0)
 polygon(cords.x, cords.y, col='skyblue', border=NA, add = TRUE)
 
-# Simulamos el coste diario de 1000 llamadas
-samples <- rexp(1000, lambda)
-cost <- (samples<=1)*(0.1 + 0.6*samples) + (samples>1)*(0.1+0.3*samples)
-plot(samples, cost, xlab="Duración de la llamada", ylab = "Coste", 
-  main = "Simulación del coste de 1000 llamadas")
-mean(cost) # Media
-sd(cost)   # Desviación típica
-sum(cost)  # Coste total
+
 
 
 
